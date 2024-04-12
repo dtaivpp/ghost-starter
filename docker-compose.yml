@@ -15,12 +15,8 @@ services:
       database__connection__database: ghostdb
     volumes:
       - /home/ghost/content:/var/lib/ghost/content
-      - type: bind
-        source: $PWD/config/config.production.json
-        target: /var/lib/ghost/config.production.json
-      - type: bind
-        source: $PWD/config/config.development.json
-        target: /var/lib/ghost/config.development.json
+      - $PWD/config/config.production.json:/var/lib/ghost/config.production.json
+      - $PWD/config/config.development.json:/var/lib/ghost/config.development.json
 
   db:
     image: mysql:8.0
