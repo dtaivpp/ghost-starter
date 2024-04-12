@@ -8,7 +8,7 @@ services:
     depends_on:
       - db
     environment:
-      url: http://localhost:2368
+      url: {URL}
       database__client: mysql
       database__connection__host: db
       database__connection__user: {MYSQL_USER}

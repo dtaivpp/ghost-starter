@@ -6,8 +6,11 @@ To run a site on your own you can fork this repo and deploy it yourself. You wil
 
 ```
 # in .env file at root directory
+URL=https://yourdomain.com:2368
 MYSQL_ROOT_PASSWORD=
 MYSQL_USER=
 MYSQL_PASSWORD=
 CLOUDFLARE_TOKEN=
 ```
+
+After deploying you will need to go into your Cloudflare Dashbaord and r
