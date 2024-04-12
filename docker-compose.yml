@@ -15,6 +15,12 @@ services:
       database__connection__database: ghostdb
     volumes:
       - /home/ghost/content:/var/lib/ghost/content
+      - type: bind
+        source: $PWD:/config/config.production.json
+        target: /var/lib/ghost/config.production.json
+      - type: bind
+        source: $PWD:/config/config.development.json
+        target: /var/lib/ghost/config.development.json
 
   db:
     image: mysql:8.0
@@ -24,6 +30,8 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ghostdb
+    ports:
+      - 127.0.0.1:3306:3306
     volumes:
       - /home/ghost/mysql:/var/lib/mysql
 
