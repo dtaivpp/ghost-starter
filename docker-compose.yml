@@ -16,10 +16,10 @@ services:
     volumes:
       - /home/ghost/content:/var/lib/ghost/content
       - type: bind
-        source: $PWD:/config/config.production.json
+        source: $PWD/config/config.production.json
         target: /var/lib/ghost/config.production.json
       - type: bind
-        source: $PWD:/config/config.development.json
+        source: $PWD/config/config.development.json
         target: /var/lib/ghost/config.development.json
 
   db:
