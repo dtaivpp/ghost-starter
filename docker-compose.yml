@@ -8,11 +8,11 @@ services:
     depends_on:
       - db
     environment:
-      url: {URL}
+      url: ${URL}
       database__client: mysql
       database__connection__host: db
-      database__connection__user: {MYSQL_USER}
-      database__connection__password: {MYSQL_PASSWORD}
+      database__connection__user: ${MYSQL_USER}
+      database__connection__password: ${MYSQL_PASSWORD}
       database__connection__database: ghostdb
     volumes:
       - /home/ghost/content:/var/lib/ghost/content
@@ -21,9 +21,9 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: {MYSQL_ROOT_PASSWORD}
-      MYSQL_USER: {MYSQL_USER}
-      MYSQL_PASSWORD: {MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ghostdb
     volumes:
       - db:/var/lib/mysql
@@ -33,4 +33,4 @@ services:
     restart: unless-stopped
     command: tunnel run
     environment:
-      TUNNEL_TOKEN: {CLOUDFLARE_TOKEN}
+      TUNNEL_TOKEN: ${CLOUDFLARE_TOKEN}

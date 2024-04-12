@@ -13,4 +13,4 @@ MYSQL_PASSWORD=
 CLOUDFLARE_TOKEN=
 ```
 
-After deploying you will need to go into your Cloudflare Dashbaord and r
+After deploying you will need to go into your Cloudflare Dashbaord and configure your domain. 
