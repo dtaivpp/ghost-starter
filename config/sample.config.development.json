@@ -5,7 +5,18 @@
     "host": "::"
   },
   "mail": {
-    "transport": "Direct"
+    "from": "noreply@<your domaim>",
+    "transport": "SMTP",
+    "options": {
+      "service": "Mailgun",
+      "host": "smtp.mailgun.org",
+      "port": 587,
+      "secure": true,
+      "auth": {
+        "user": "postmaster@<your domaim>",
+        "pass": "<password>"
+      }
+    }
   },
   "logging": {
     "transports": [
