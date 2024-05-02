@@ -21,6 +21,7 @@ services:
       mail__options__secure: true
       mail__options__auth__user: ${SMTP_USER}
       mail__options__auth__pass: /run/secrets/smtp_pass
+      NODE_ENV: ${DEPLOYMENT}
     volumes:
       - ./ghost/content:/var/lib/ghost/content
     secrets:

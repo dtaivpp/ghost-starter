@@ -14,23 +14,49 @@ First and foremost I would strongly recommend using a hosting provider such as A
 
 ## Configuring
 
-After forking and cloning the repo you will need to create a .env file at the root of the repo with the following variables. The first section is needed to deploy the Ghost site. The Cloudflare section helps us expose the site to the web. Finally, the SMTP section is needed to allow users to sign up and login. Any SMPT provider can be used here but for the sake of this repo we are using Mailgun. 
+After forking and cloning the repo you will need to run the below script. This will create the files needed to hold our passwords and secrets.
 
+```bash
+sudo chmod +x bootstrap.sh
+./bootstrap.sh
 ```
-# In .env file at root directory
+
+You will find a few files were created in the `/secrets/` directory. In these files we will need to first open the `CLOUDFLARE_TOKEN.txt` file and put the token that you've generated from the cloudflare zero trust dashboard. Next you will need to open the `SMTP_PASS.txt` file and put in the password you recieved from the SMTP provider. Finally, we will need to fill out the `.env` file. This will look different depending on whether you are doing development or produciton. Below is a sample for each.
+
+### Local development .env
+```
+# Change the domain to your website or localhost if testing.
+URL=http://localhost:2368
+
+# Could be any user youd like
+MYSQL_USER=testdb
+
+# SMTP - Mail from is an address you have permissions to mail from. Below is just a demo. 
+# SMTP User - Username provided by your SMTP service
+MAIL_FROM=noreply@mail.yourdomain.com
+SMTP_USER=testuser
+
+# Set between production and development
+DEPLOYMENT=development
+```
+
+### Production .env
+```
+# Change the domain to your website or localhost if testing.
 URL=https://yourdomain.com
-MYSQL_ROOT_PASSWORD=
-MYSQL_USER=
-MYSQL_PASSWORD=
 
-# If using cloudflare for access
-CLOUDFLARE_TOKEN=
+# Could be any user youd like
+MYSQL_USER=ghostdb
 
-# SMTP
-MAIL_FROM=
-SMTP_USER=
-SMTP_PASS=
+# SMTP - Mail from is an address you have permissions to mail from. Below is just a demo. 
+# SMTP User - Username provided by your SMTP service
+MAIL_FROM=noreply@mail.yourdomain.com
+SMTP_USER=smtpuser
+
+# Set between production and development
+DEPLOYMENT=production
 ```
+
 
 ## Deploying
 
