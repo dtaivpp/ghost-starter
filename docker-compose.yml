@@ -11,7 +11,7 @@ services:
       database__client: mysql
       database__connection__host: db
       database__connection__user: ${MYSQL_USER}
-      database__connection__password: ${MYSQL_PASSWORD}
+      database__connection__password: /run/secrets/mysql_password
       database__connection__database: ghostdb
       mail__from: ${MAIL_FROM}
       mail__transport: SMTP
@@ -20,26 +20,44 @@ services:
       mail__options__port: 465
       mail__options__secure: true
       mail__options__auth__user: ${SMTP_USER}
-      mail__options__auth__pass: ${SMTP_PASS}
+      mail__options__auth__pass: /run/secrets/smtp_pass
     volumes:
-      - /home/ghost/content:/var/lib/ghost/content
+      - ./ghost/content:/var/lib/ghost/content
+    secrets:
+      - mysql_password
+      - smtp_pass
 
   db:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: /run/secrets/mysql_root_password
       MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_PASSWORD: /run/secrets/mysql_password
       MYSQL_DATABASE: ghostdb
     ports:
       - 127.0.0.1:3306:3306
     volumes:
-      - /home/ghost/mysql:/var/lib/mysql
+      - ./ghost/mysql:/var/lib/mysql
+    secrets:
+      - mysql_password
+      - mysql_root_password
 
   ghost-cf-tunnel:
     image: cloudflare/cloudflared
     restart: unless-stopped
     command: tunnel run
     environment:
-      TUNNEL_TOKEN: ${CLOUDFLARE_TOKEN}
+      TUNNEL_TOKEN: /run/secrets/cloudflare_token
+    secrets:
+      - cloudflare_token
+
+secrets:
+  mysql_root_password:
+    file: ./secrets/MYSQL_ROOT_PASSWORD.txt
+  mysql_password:
+    file: ./secrets/MYSQL_PASSWORD.txt
+  smtp_pass:
+    file: ./secrets/SMTP_PASS.txt
+  cloudflare_token:
+    file: ./secrets/CLOUDFLARE_TOKEN.txt

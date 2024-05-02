@@ -1,3 +1,3 @@
 .env
-config/config.development.json
-config/config.production.json
+secrets/*
+ghost/*
