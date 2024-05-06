@@ -1,6 +1,6 @@
 # Ghost Starter
 
-This project contains the code I use to deploy my website using [Ghost](https://ghost.org/) and [Cloudflared](https://github.com/cloudflare/cloudflared). This can serve as a foundation for you to deploy your very own site! Ghost is a content management system (CMS) for hosting dynamic websites. It uses a Javascript templating library along with MySQL on the backend to serve content. We'll only be covering deploying here but there will be a companion blog that covers in more detail. 
+This project contains the code I use to deploy my website using [Ghost](https://ghost.org/) and [Cloudflared](https://github.com/cloudflare/cloudflared). This can serve as a foundation for you to deploy your very own site! Ghost is a content management system (CMS) for hosting dynamic websites. It uses a Javascript templating library along with MySQL on the backend to serve content. We'll only be covering deploying here but for a more full instruction set checkout my [blog on setting this up](https://tippybits.com/deploying-ghost-with-cloudflare/)!
 
 To run a site on your own you can fork this repo and deploy it using the instructions below. 
 
